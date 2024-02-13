@@ -1,28 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:project_gsc/auth.dart';
-import 'package:project_gsc/screens/register.dart';
+import 'package:project_gsc/widget_tree.dart';
 
-class LogIn extends StatefulWidget {
-  const LogIn({super.key});
+class Register extends StatefulWidget {
+  const Register({super.key});
 
   @override
-  State<LogIn> createState() => _LogInState();
+  State<Register> createState() => _RegisterState();
 }
 
-class _LogInState extends State<LogIn> {
+class _RegisterState extends State<Register> {
   String? errorMessage = '';
-  
 
   final TextEditingController _controllerEmail = TextEditingController();
   final TextEditingController _controllerPassword = TextEditingController();
 
-  Future<void> logInWithEmailAndPassword() async {
+  Future<void> createUserWithEmailAndPassword() async {
     try {
-      await Auth().logInWithEmailAndPassword(
+      await Auth().createUserWithEmailAndPassword(
         email: _controllerEmail.text,
         password: _controllerPassword.text,
       );
+      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const WidgetTree()));
     } on FirebaseAuthException catch (e) {
       setState(() {
         errorMessage = e.message;
@@ -45,7 +45,7 @@ class _LogInState extends State<LogIn> {
 
             // Application Name
             const Text(
-              'App Name',
+              'Register',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 32,
@@ -97,7 +97,7 @@ class _LogInState extends State<LogIn> {
 
             // Login Button
             InkWell(
-              onTap: logInWithEmailAndPassword,
+              onTap: createUserWithEmailAndPassword,
               child: Container(
                 width: double.infinity,
                 alignment: Alignment.center,
@@ -110,7 +110,7 @@ class _LogInState extends State<LogIn> {
                   ],
                 ),
                 child: const Text(
-                  'Login',
+                  'Register',
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
@@ -134,7 +134,7 @@ class _LogInState extends State<LogIn> {
                     vertical: 8,
                   ),
                   child: const Text(
-                    "Don't have an account? ",
+                    "Already have an account? ",
                     style: TextStyle(
                       color: Colors.grey,
                     ),
@@ -145,7 +145,7 @@ class _LogInState extends State<LogIn> {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const Register(),
+                        builder: (context) => const WidgetTree(),
                       ),
                     );
                   },
@@ -154,7 +154,7 @@ class _LogInState extends State<LogIn> {
                       vertical: 8,
                     ),
                     child: const Text(
-                      "Register.",
+                      "Log In.",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
