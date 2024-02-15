@@ -17,7 +17,7 @@ class _WidgetTreeState extends State<WidgetTree> {
       if (snapshot.hasData) {
         return Home();
       } else {
-        return LogIn();
+        return const LogIn();
       }
     });
   }

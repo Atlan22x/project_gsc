@@ -38,7 +38,7 @@ class _HomeState extends State<Home> {
         elevation: 0,
       ),
       backgroundColor: Colors.black,
-      body: Container(
+      body: SizedBox(
         height: double.infinity,
         width: double.infinity,
         child: Column(

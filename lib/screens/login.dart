@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:project_gsc/auth.dart';
-import 'package:project_gsc/screens/register.dart';
 
 class LogIn extends StatefulWidget {
   const LogIn({super.key});
@@ -11,12 +10,12 @@ class LogIn extends StatefulWidget {
 }
 
 class _LogInState extends State<LogIn> {
-  String? errorMessage = '';
-  
+  bool isLogin = false;
 
   final TextEditingController _controllerEmail = TextEditingController();
   final TextEditingController _controllerPassword = TextEditingController();
 
+  // User login function
   Future<void> logInWithEmailAndPassword() async {
     try {
       await Auth().logInWithEmailAndPassword(
@@ -24,10 +23,31 @@ class _LogInState extends State<LogIn> {
         password: _controllerPassword.text,
       );
     } on FirebaseAuthException catch (e) {
-      setState(() {
-        errorMessage = e.message;
-      });
+      if (!context.mounted) return;
+      showSnackBar(e.message, context);
     }
+  }
+
+  // User create account function
+  Future<void> createUserWithEmailAndPassword() async {
+    try {
+      await Auth().createUserWithEmailAndPassword(
+        email: _controllerEmail.text,
+        password: _controllerPassword.text,
+      );
+    } on FirebaseAuthException catch (e) {
+      if (!context.mounted) return;
+      showSnackBar(e.message, context);
+    }
+  }
+
+  // Error message
+  showSnackBar(String? content, BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(content!),
+      ),
+    );
   }
 
   @override
@@ -55,6 +75,20 @@ class _LogInState extends State<LogIn> {
             // Spacing
             const SizedBox(
               height: 32,
+            ),
+
+            // Application Name
+            Text(
+              isLogin? 'Login User' : 'Create User',
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 24,
+              ),
+            ),
+
+            // Spacing
+            const SizedBox(
+              height: 10,
             ),
 
             // Username
@@ -95,9 +129,11 @@ class _LogInState extends State<LogIn> {
               height: 20,
             ),
 
-            // Login Button
+            // Login or Register Button
             InkWell(
-              onTap: logInWithEmailAndPassword,
+              onTap: isLogin
+                  ? logInWithEmailAndPassword
+                  : createUserWithEmailAndPassword,
               child: Container(
                 width: double.infinity,
                 alignment: Alignment.center,
@@ -109,9 +145,9 @@ class _LogInState extends State<LogIn> {
                     BoxShadow(color: Colors.white, spreadRadius: 2),
                   ],
                 ),
-                child: const Text(
-                  'Login',
-                  style: TextStyle(
+                child: Text(
+                  isLogin ? 'Login' : 'Register',
+                  style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
@@ -133,29 +169,34 @@ class _LogInState extends State<LogIn> {
                   padding: const EdgeInsets.symmetric(
                     vertical: 8,
                   ),
-                  child: const Text(
-                    "Don't have an account? ",
-                    style: TextStyle(
+                  child: Text(
+                    isLogin
+                        ? "Don't have an account? "
+                        : "Already have an Account? ",
+                    style: const TextStyle(
                       color: Colors.grey,
                     ),
                   ),
                 ),
                 GestureDetector(
                   onTap: () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const Register(),
-                      ),
-                    );
+                    if (isLogin == true) {
+                      setState(() {
+                        isLogin = false;
+                      });
+                    } else {
+                      setState(() {
+                        isLogin = true;
+                      });
+                    }
                   },
                   child: Container(
                     padding: const EdgeInsets.symmetric(
                       vertical: 8,
                     ),
-                    child: const Text(
-                      "Register.",
-                      style: TextStyle(
+                    child: Text(
+                      isLogin ? "Register." : "Login",
+                      style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                       ),
