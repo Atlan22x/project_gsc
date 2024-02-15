@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:project_gsc/auth.dart';
 
-class LogIn extends StatefulWidget {
-  const LogIn({super.key});
+class LogInAndRegister extends StatefulWidget {
+  const LogInAndRegister({super.key});
 
   @override
-  State<LogIn> createState() => _LogInState();
+  State<LogInAndRegister> createState() => _LogInState();
 }
 
-class _LogInState extends State<LogIn> {
+class _LogInState extends State<LogInAndRegister> {
   bool isLogin = false;
 
   final TextEditingController _controllerEmail = TextEditingController();
