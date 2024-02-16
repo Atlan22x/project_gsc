@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:project_gsc/auth.dart';
+import 'package:project_gsc/screens/register.dart';
+import 'package:project_gsc/screens/home.dart';
 
-class LogInAndRegister extends StatefulWidget {
-  const LogInAndRegister({super.key});
+class LogIn extends StatefulWidget {
+  const LogIn({super.key});
 
   @override
-  State<LogInAndRegister> createState() => _LogInState();
+  State<LogIn> createState() => _LogInState();
 }
 
-class _LogInState extends State<LogInAndRegister> {
-  bool isLogin = false;
-
+class _LogInState extends State<LogIn> {
   final TextEditingController _controllerEmail = TextEditingController();
   final TextEditingController _controllerPassword = TextEditingController();
 
@@ -22,19 +22,9 @@ class _LogInState extends State<LogInAndRegister> {
         email: _controllerEmail.text,
         password: _controllerPassword.text,
       );
-    } on FirebaseAuthException catch (e) {
       if (!context.mounted) return;
-      showSnackBar(e.message, context);
-    }
-  }
-
-  // User create account function
-  Future<void> createUserWithEmailAndPassword() async {
-    try {
-      await Auth().createUserWithEmailAndPassword(
-        email: _controllerEmail.text,
-        password: _controllerPassword.text,
-      );
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => Home()));
     } on FirebaseAuthException catch (e) {
       if (!context.mounted) return;
       showSnackBar(e.message, context);
@@ -65,7 +55,7 @@ class _LogInState extends State<LogInAndRegister> {
 
             // Application Name
             const Text(
-              'App Name',
+              'Nama Apliaksi',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 32,
@@ -77,21 +67,7 @@ class _LogInState extends State<LogInAndRegister> {
               height: 32,
             ),
 
-            // Application Name
-            Text(
-              isLogin? 'Login User' : 'Create User',
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 24,
-              ),
-            ),
-
-            // Spacing
-            const SizedBox(
-              height: 10,
-            ),
-
-            // Username
+            // Email
             TextField(
               decoration: const InputDecoration(
                 filled: true,
@@ -115,7 +91,7 @@ class _LogInState extends State<LogInAndRegister> {
               decoration: const InputDecoration(
                 filled: true,
                 fillColor: Colors.white,
-                hintText: 'Password',
+                hintText: 'Kata Sandi',
                 hintStyle: TextStyle(
                   fontSize: 16,
                   color: Colors.grey,
@@ -131,9 +107,7 @@ class _LogInState extends State<LogInAndRegister> {
 
             // Login or Register Button
             InkWell(
-              onTap: isLogin
-                  ? logInWithEmailAndPassword
-                  : createUserWithEmailAndPassword,
+              onTap: logInWithEmailAndPassword,
               child: Container(
                 width: double.infinity,
                 alignment: Alignment.center,
@@ -145,9 +119,9 @@ class _LogInState extends State<LogInAndRegister> {
                     BoxShadow(color: Colors.white, spreadRadius: 2),
                   ],
                 ),
-                child: Text(
-                  isLogin ? 'Login' : 'Register',
-                  style: const TextStyle(
+                child: const Text(
+                  'Masuk',
+                  style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
@@ -169,34 +143,25 @@ class _LogInState extends State<LogInAndRegister> {
                   padding: const EdgeInsets.symmetric(
                     vertical: 8,
                   ),
-                  child: Text(
-                    isLogin
-                        ? "Don't have an account? "
-                        : "Already have an Account? ",
-                    style: const TextStyle(
+                  child: const Text(
+                    "Tidak ada akun? ",
+                    style: TextStyle(
                       color: Colors.grey,
                     ),
                   ),
                 ),
                 GestureDetector(
                   onTap: () {
-                    if (isLogin == true) {
-                      setState(() {
-                        isLogin = false;
-                      });
-                    } else {
-                      setState(() {
-                        isLogin = true;
-                      });
-                    }
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(
+                        builder: (context) => const Register()));
                   },
                   child: Container(
                     padding: const EdgeInsets.symmetric(
                       vertical: 8,
                     ),
-                    child: Text(
-                      isLogin ? "Register." : "Login",
-                      style: const TextStyle(
+                    child: const Text(
+                      "Buat Akun",
+                      style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                       ),

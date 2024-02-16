@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_gsc/auth.dart';
-import 'package:project_gsc/screens/login_register.dart';
+import 'package:project_gsc/screens/login.dart';
 import 'package:project_gsc/screens/home.dart';
 
 class WidgetTree extends StatefulWidget {
@@ -17,7 +17,7 @@ class _WidgetTreeState extends State<WidgetTree> {
       if (snapshot.hasData) {
         return Home();
       } else {
-        return const LogInAndRegister();
+        return const LogIn();
       }
     });
   }
