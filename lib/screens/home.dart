@@ -20,11 +20,30 @@ class _HomeState extends State<Home> {
         MaterialPageRoute(builder: (context) => const WidgetTree()));
   }
 
+  Future<void> ChatRoom() async {
+    if (!context.mounted) return;
+    Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => const MyHomePage()));
+  }
+
   Widget _logOutButton() {
     return ElevatedButton(
       onPressed: logOut,
       child: const Text(
         'Logout',
+        style: TextStyle(
+          fontSize: 16,
+        ),
+      ),
+    );
+  }
+
+
+  Widget _ChatRoomButton() {
+    return ElevatedButton(
+      onPressed: ChatRoom,
+      child: const Text(
+        'Chat',
         style: TextStyle(
           fontSize: 16,
         ),
@@ -49,6 +68,7 @@ class _HomeState extends State<Home> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            _ChatRoomButton(),
             _logOutButton(),
           ],
         ),
