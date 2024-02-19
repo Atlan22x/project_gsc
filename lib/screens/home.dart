@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:project_gsc/auth.dart';
-import 'package:project_gsc/widget_tree.dart';
+import 'package:project_gsc/main.dart';
+import 'package:project_gsc/utils/auth.dart';
+import 'package:project_gsc/utils/colors.dart';
 
 class Home extends StatefulWidget {
   Home({super.key});
@@ -17,7 +18,7 @@ class _HomeState extends State<Home> {
     await Auth().logOut();
     if (!context.mounted) return;
     Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => const WidgetTree()));
+        MaterialPageRoute(builder: (context) => MainApp()));
   }
 
   Widget _logOutButton() {
@@ -37,11 +38,11 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('App Name'),
-        foregroundColor: Colors.white,
-        backgroundColor: Colors.black,
+        foregroundColor: foregroundColor,
+        backgroundColor: defaultBackgroundColor,
         elevation: 0,
       ),
-      backgroundColor: Colors.black,
+      backgroundColor: defaultBackgroundColor,
       body: SizedBox(
         height: double.infinity,
         width: double.infinity,

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:project_gsc/auth.dart';
+import 'package:project_gsc/utils/auth.dart';
 import 'package:project_gsc/screens/register.dart';
 import 'package:project_gsc/screens/home.dart';
+import 'package:project_gsc/screens/consultant_home.dart';
+import 'package:project_gsc/utils/colors.dart';
+import 'package:project_gsc/verify_consultant.dart';
 
 class LogIn extends StatefulWidget {
   const LogIn({super.key});
@@ -12,8 +15,11 @@ class LogIn extends StatefulWidget {
 }
 
 class _LogInState extends State<LogIn> {
+  bool isConsultant = false;
+
   final TextEditingController _controllerEmail = TextEditingController();
   final TextEditingController _controllerPassword = TextEditingController();
+  final TextEditingController _controllerSRT = TextEditingController();
 
   // User login function
   Future<void> logInWithEmailAndPassword() async {
@@ -23,8 +29,8 @@ class _LogInState extends State<LogIn> {
         password: _controllerPassword.text,
       );
       if (!context.mounted) return;
-      Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => Home()));
+      Navigator.of(context)
+          .pushReplacement(MaterialPageRoute(builder: (context) => const VerifyConsultant()));
     } on FirebaseAuthException catch (e) {
       if (!context.mounted) return;
       showSnackBar(e.message, context);
@@ -43,7 +49,7 @@ class _LogInState extends State<LogIn> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: defaultBackgroundColor,
       body: SafeArea(
           child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 32),
@@ -55,9 +61,9 @@ class _LogInState extends State<LogIn> {
 
             // Application Name
             const Text(
-              'Nama Apliaksi',
+              'ConsuLawtion',
               style: TextStyle(
-                color: Colors.white,
+                color: foregroundColor,
                 fontSize: 32,
               ),
             ),
@@ -67,15 +73,40 @@ class _LogInState extends State<LogIn> {
               height: 32,
             ),
 
+            // Consultant SRT Number
+            Visibility(
+              visible: isConsultant ? true : false,
+              child: TextField(
+                decoration: const InputDecoration(
+                  filled: true,
+                  fillColor: foregroundColor,
+                  hintText: 'No. SRT',
+                  hintStyle: TextStyle(
+                    fontSize: 16,
+                    color: secondForegroundColor,
+                  ),
+                ),
+                controller: _controllerSRT,
+              ),
+            ),
+
+            // Spacing
+            Visibility(
+              visible: isConsultant ? true : false,
+              child: const SizedBox(
+                height: 12,
+              ),
+            ),
+
             // Email
             TextField(
               decoration: const InputDecoration(
                 filled: true,
-                fillColor: Colors.white,
+                fillColor: foregroundColor,
                 hintText: 'Email',
                 hintStyle: TextStyle(
                   fontSize: 16,
-                  color: Colors.grey,
+                  color: secondForegroundColor,
                 ),
               ),
               controller: _controllerEmail,
@@ -83,18 +114,18 @@ class _LogInState extends State<LogIn> {
 
             // Spacing
             const SizedBox(
-              height: 16,
+              height: 12,
             ),
 
             // Password
             TextField(
               decoration: const InputDecoration(
                 filled: true,
-                fillColor: Colors.white,
+                fillColor: foregroundColor,
                 hintText: 'Kata Sandi',
                 hintStyle: TextStyle(
                   fontSize: 16,
-                  color: Colors.grey,
+                  color: secondForegroundColor,
                 ),
               ),
               controller: _controllerPassword,
@@ -116,7 +147,7 @@ class _LogInState extends State<LogIn> {
                   borderRadius: BorderRadius.circular(3),
                   color: Colors.black,
                   boxShadow: const [
-                    BoxShadow(color: Colors.white, spreadRadius: 2),
+                    BoxShadow(color: foregroundColor, spreadRadius: 2),
                   ],
                 ),
                 child: const Text(
@@ -124,10 +155,40 @@ class _LogInState extends State<LogIn> {
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
-                    color: Colors.white,
+                    color: foregroundColor,
                   ),
                 ),
               ),
+            ),
+
+            //Spacing
+            const SizedBox(
+              height: 8,
+            ),
+
+            // Checkbox to login as Consultant
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const Text(
+                  "Konsultan",
+                  style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w400,
+                      color: foregroundColor),
+                ),
+                Checkbox(
+                  checkColor: defaultBackgroundColor,
+                  activeColor: foregroundColor,
+                  value: isConsultant,
+                  onChanged: (bool? value) {
+                    setState(() {
+                      isConsultant = value!;
+                    });
+                  },
+                ),
+              ],
             ),
 
             //Spacing
@@ -146,7 +207,7 @@ class _LogInState extends State<LogIn> {
                   child: const Text(
                     "Tidak ada akun? ",
                     style: TextStyle(
-                      color: Colors.grey,
+                      color: secondForegroundColor,
                     ),
                   ),
                 ),
@@ -163,7 +224,7 @@ class _LogInState extends State<LogIn> {
                       "Buat Akun",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                        color: foregroundColor,
                       ),
                     ),
                   ),
