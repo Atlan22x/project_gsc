@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:project_gsc/auth.dart';
 import 'package:project_gsc/widget_tree.dart';
+import 'package:project_gsc/screens/chatroom.dart';
 
 class Home extends StatefulWidget {
   Home({super.key});
