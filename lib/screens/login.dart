@@ -5,7 +5,7 @@ import 'package:project_gsc/screens/register.dart';
 import 'package:project_gsc/screens/home.dart';
 import 'package:project_gsc/screens/consultant_home.dart';
 import 'package:project_gsc/utils/colors.dart';
-import 'package:project_gsc/verify_consultant.dart';
+import 'package:project_gsc/utils/verify_consultant.dart';
 
 class LogIn extends StatefulWidget {
   const LogIn({super.key});
@@ -193,7 +193,7 @@ class _LogInState extends State<LogIn> {
 
             //Spacing
             const SizedBox(
-              height: 32,
+              height: 32
             ),
 
             // To Register

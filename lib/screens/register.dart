@@ -211,7 +211,7 @@ class _RegisterState extends State<Register> {
             ),
             //Spacing
             const SizedBox(
-              height: 32,
+              height: 8,
             ),
 
             // To Register
@@ -220,7 +220,7 @@ class _RegisterState extends State<Register> {
               children: [
                 Container(
                   padding: const EdgeInsets.symmetric(
-                    vertical: 8,
+                    vertical: 4,
                   ),
                   child: const Text(
                     "Sudah ada akun? ",
@@ -232,11 +232,11 @@ class _RegisterState extends State<Register> {
                 GestureDetector(
                   onTap: () {
                     Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(builder: (context) => LogIn()));
+                        MaterialPageRoute(builder: (context) => const LogIn()));
                   },
                   child: Container(
                     padding: const EdgeInsets.symmetric(
-                      vertical: 8,
+                      vertical: 4,
                     ),
                     child: const Text(
                       "Masuk Akun",

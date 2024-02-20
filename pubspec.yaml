@@ -8,10 +8,17 @@ environment:
 
 dependencies:
   cloud_firestore: ^4.15.4
+  file_picker: ^6.1.1
   firebase_auth: ^4.17.4
   firebase_core: ^2.25.4
   flutter:
     sdk: flutter
+  flutter_chat_types: ^3.6.2
+  flutter_chat_ui: ^1.6.12
+  image_picker: ^1.0.7
+  open_filex: ^4.4.0
+  path_provider: ^2.1.2
+
 
 dev_dependencies:
   flutter_test:
@@ -19,4 +26,15 @@ dev_dependencies:
   flutter_lints: ^3.0.1
 
 flutter:
+  assets:
+    - assets/bisnis.png
+    - assets/internasional.png
+    - assets/kebijakan_publik.png
+    - assets/ketenagakerjaan.png
+    - assets/keuangan_perbankan.png
+    - assets/lingkungan.png
+    - assets/perdata.png
+    - assets/pidana.png
+    - assets/properti.png
+    - assets/teknologi_media.png
   uses-material-design: true

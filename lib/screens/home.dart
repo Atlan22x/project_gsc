@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:project_gsc/main.dart';
 import 'package:project_gsc/utils/auth.dart';
 import 'package:project_gsc/utils/colors.dart';
+import 'package:project_gsc/screens/chatroom.dart';
 
 class Home extends StatefulWidget {
   Home({super.key});
@@ -21,11 +22,30 @@ class _HomeState extends State<Home> {
         MaterialPageRoute(builder: (context) => MainApp()));
   }
 
+  Future<void> _chatRoom() async {
+    if (!context.mounted) return;
+    Navigator.of(context).push(
+        MaterialPageRoute(builder: (context) => const ChatRoom()));
+  }
+
   Widget _logOutButton() {
     return ElevatedButton(
       onPressed: logOut,
       child: const Text(
         'Logout',
+        style: TextStyle(
+          fontSize: 16,
+        ),
+      ),
+    );
+  }
+
+
+  Widget _chatRoomButton() {
+    return ElevatedButton(
+      onPressed: _chatRoom,
+      child: const Text(
+        'Chat',
         style: TextStyle(
           fontSize: 16,
         ),
@@ -50,6 +70,7 @@ class _HomeState extends State<Home> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            _chatRoomButton(),
             _logOutButton(),
           ],
         ),

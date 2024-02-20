@@ -4,7 +4,7 @@ import 'package:project_gsc/screens/home.dart';
 import 'package:project_gsc/screens/consultant_home.dart';
 import 'package:project_gsc/screens/login.dart';
 import 'package:project_gsc/utils/auth.dart';
-import 'package:project_gsc/verify_consultant.dart';
+import 'package:project_gsc/utils/verify_consultant.dart';
 import 'utils/firebase_options.dart';
 
 Future<void> main() async {
