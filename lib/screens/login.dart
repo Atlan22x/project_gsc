@@ -19,7 +19,7 @@ class _LogInState extends State<LogIn> {
 
   final TextEditingController _controllerEmail = TextEditingController();
   final TextEditingController _controllerPassword = TextEditingController();
-  final TextEditingController _controllerSRT = TextEditingController();
+  // final TextEditingController _controllerSRT = TextEditingController();
 
   // User login function
   Future<void> logInWithEmailAndPassword() async {
@@ -73,30 +73,30 @@ class _LogInState extends State<LogIn> {
               height: 32,
             ),
 
-            // Consultant SRT Number
-            Visibility(
-              visible: isConsultant ? true : false,
-              child: TextField(
-                decoration: const InputDecoration(
-                  filled: true,
-                  fillColor: foregroundColor,
-                  hintText: 'No. SRT',
-                  hintStyle: TextStyle(
-                    fontSize: 16,
-                    color: secondForegroundColor,
-                  ),
-                ),
-                controller: _controllerSRT,
-              ),
-            ),
+            // // Consultant SRT Number
+            // Visibility(
+            //   visible: isConsultant ? true : false,
+            //   child: TextField(
+            //     decoration: const InputDecoration(
+            //       filled: true,
+            //       fillColor: foregroundColor,
+            //       hintText: 'No. SRT',
+            //       hintStyle: TextStyle(
+            //         fontSize: 16,
+            //         color: secondForegroundColor,
+            //       ),
+            //     ),
+            //     controller: _controllerSRT,
+            //   ),
+            // ),
 
-            // Spacing
-            Visibility(
-              visible: isConsultant ? true : false,
-              child: const SizedBox(
-                height: 12,
-              ),
-            ),
+            // // Spacing
+            // Visibility(
+            //   visible: isConsultant ? true : false,
+            //   child: const SizedBox(
+            //     height: 12,
+            //   ),
+            // ),
 
             // Email
             TextField(
@@ -161,35 +161,35 @@ class _LogInState extends State<LogIn> {
               ),
             ),
 
-            //Spacing
-            const SizedBox(
-              height: 8,
-            ),
+            // //Spacing
+            // const SizedBox(
+            //   height: 8,
+            // ),
 
-            // Checkbox to login as Consultant
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const Text(
-                  "Konsultan",
-                  style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                      color: foregroundColor),
-                ),
-                Checkbox(
-                  checkColor: defaultBackgroundColor,
-                  activeColor: foregroundColor,
-                  value: isConsultant,
-                  onChanged: (bool? value) {
-                    setState(() {
-                      isConsultant = value!;
-                    });
-                  },
-                ),
-              ],
-            ),
+            // // Checkbox to login as Consultant
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.end,
+            //   crossAxisAlignment: CrossAxisAlignment.center,
+            //   children: [
+            //     const Text(
+            //       "Konsultan",
+            //       style: TextStyle(
+            //           fontSize: 14,
+            //           fontWeight: FontWeight.w400,
+            //           color: foregroundColor),
+            //     ),
+            //     Checkbox(
+            //       checkColor: defaultBackgroundColor,
+            //       activeColor: foregroundColor,
+            //       value: isConsultant,
+            //       onChanged: (bool? value) {
+            //         setState(() {
+            //           isConsultant = value!;
+            //         });
+            //       },
+            //     ),
+            //   ],
+            // ),
 
             //Spacing
             const SizedBox(
