@@ -15,7 +15,7 @@ class _ConsultantHomeState extends State<ConsultantHome> {
     await Auth().logOut();
     if (!context.mounted) return;
     Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => MainApp()));
+        MaterialPageRoute(builder: (context) => const MainApp()));
   }
   
   @override
@@ -23,8 +23,8 @@ class _ConsultantHomeState extends State<ConsultantHome> {
     return Scaffold(
       backgroundColor: defaultBackgroundColor,
       appBar: AppBar(
-        backgroundColor: defaultBackgroundColor,
-        foregroundColor: foregroundColor,
+        backgroundColor: firstColor,
+        foregroundColor: defaultBackgroundColor,
         title: const Text("Consultant UI"),
       ),
       body: Center(
@@ -34,7 +34,7 @@ class _ConsultantHomeState extends State<ConsultantHome> {
             },
             icon: const Icon(Icons.logout),
             style: const ButtonStyle(
-              iconColor: MaterialStatePropertyAll(Colors.white),
+              iconColor: MaterialStatePropertyAll(firstColor),
             )),
       ),
     );

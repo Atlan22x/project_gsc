@@ -15,6 +15,9 @@ dependencies:
     sdk: flutter
   flutter_chat_types: ^3.6.2
   flutter_chat_ui: ^1.6.12
+  flutter_launcher_icons: ^0.13.1
+  flutter_svg: ^2.0.9
+  http: ^1.2.0
   image_picker: ^1.0.7
   open_filex: ^4.4.0
   path_provider: ^2.1.2
@@ -37,4 +40,12 @@ flutter:
     - assets/pidana.png
     - assets/properti.png
     - assets/teknologi_media.png
+    - assets/logo_consulawtion.svg
+    - assets/logo_consulawtion.png
   uses-material-design: true
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/logo_consulawtion.png"
+  adaptive_icon_background: "#ffffff"

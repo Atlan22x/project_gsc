@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_chat_ui/flutter_chat_ui.dart';
 import 'package:project_gsc/utils/auth.dart';
 import 'package:project_gsc/screens/register.dart';
-import 'package:project_gsc/screens/home.dart';
-import 'package:project_gsc/screens/consultant_home.dart';
 import 'package:project_gsc/utils/colors.dart';
 import 'package:project_gsc/utils/verify_consultant.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class LogIn extends StatefulWidget {
   const LogIn({super.key});
@@ -59,18 +59,22 @@ class _LogInState extends State<LogIn> {
           children: [
             Flexible(flex: 2, child: Container()),
 
+            // Logo
+            SvgPicture.asset("assets/logo_consulawtion.svg", width: 120, color: firstColor,),
+
             // Application Name
             const Text(
               'ConsuLawtion',
               style: TextStyle(
-                color: foregroundColor,
-                fontSize: 32,
+                color: firstColor,
+                fontSize: 28,
+                fontWeight: FontWeight.w500,
               ),
             ),
 
             // Spacing
             const SizedBox(
-              height: 32,
+              height: 8,
             ),
 
             // // Consultant SRT Number
@@ -101,12 +105,13 @@ class _LogInState extends State<LogIn> {
             // Email
             TextField(
               decoration: const InputDecoration(
+                focusColor: firstColor,
                 filled: true,
-                fillColor: foregroundColor,
+                fillColor: defaultBackgroundColor,
                 hintText: 'Email',
                 hintStyle: TextStyle(
                   fontSize: 16,
-                  color: secondForegroundColor,
+                  color: blackColor,
                 ),
               ),
               controller: _controllerEmail,
@@ -121,11 +126,11 @@ class _LogInState extends State<LogIn> {
             TextField(
               decoration: const InputDecoration(
                 filled: true,
-                fillColor: foregroundColor,
+                fillColor: defaultBackgroundColor,
                 hintText: 'Kata Sandi',
                 hintStyle: TextStyle(
                   fontSize: 16,
-                  color: secondForegroundColor,
+                  color: blackColor,
                 ),
               ),
               controller: _controllerPassword,
@@ -145,9 +150,9 @@ class _LogInState extends State<LogIn> {
                 padding: const EdgeInsets.symmetric(vertical: 12),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(3),
-                  color: Colors.black,
+                  color: firstColor,
                   boxShadow: const [
-                    BoxShadow(color: foregroundColor, spreadRadius: 2),
+                    BoxShadow(color: firstColor, spreadRadius: 2),
                   ],
                 ),
                 child: const Text(
@@ -155,7 +160,7 @@ class _LogInState extends State<LogIn> {
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
-                    color: foregroundColor,
+                    color: defaultBackgroundColor,
                   ),
                 ),
               ),
@@ -191,10 +196,7 @@ class _LogInState extends State<LogIn> {
             //   ],
             // ),
 
-            //Spacing
-            const SizedBox(
-              height: 32
-            ),
+            const Spacer(),
 
             // To Register
             Row(
@@ -207,7 +209,7 @@ class _LogInState extends State<LogIn> {
                   child: const Text(
                     "Tidak ada akun? ",
                     style: TextStyle(
-                      color: secondForegroundColor,
+                      color: blackColor,
                     ),
                   ),
                 ),
@@ -224,7 +226,7 @@ class _LogInState extends State<LogIn> {
                       "Buat Akun",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        color: foregroundColor,
+                        color: firstColor,
                       ),
                     ),
                   ),

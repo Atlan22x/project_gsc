@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:project_gsc/utils/auth.dart';
 import 'package:project_gsc/screens/login.dart';
 // import 'package:project_gsc/screens/home.dart';
@@ -60,29 +61,33 @@ class _RegisterState extends State<Register> {
           children: [
             Flexible(flex: 2, child: Container()),
 
+            // Logo
+            SvgPicture.asset("assets/logo_consulawtion.svg", width: 120, color: firstColor,),
+
             // Application Name
             const Text(
               'ConsuLawtion',
               style: TextStyle(
-                color: foregroundColor,
-                fontSize: 32,
+                color: firstColor,
+                fontSize: 28,
+                fontWeight: FontWeight.w500
               ),
             ),
 
             // Spacing
             const SizedBox(
-              height: 32,
+              height: 8,
             ),
 
             // Username
             TextField(
               decoration: const InputDecoration(
                 filled: true,
-                fillColor: foregroundColor,
+                fillColor: defaultBackgroundColor,
                 hintText: 'Username',
                 hintStyle: TextStyle(
                   fontSize: 16,
-                  color: secondForegroundColor,
+                  color: blackColor,
                 ),
               ),
               controller: _controllerUsername,
@@ -93,39 +98,39 @@ class _RegisterState extends State<Register> {
               height: 12,
             ),
 
-            // Consultant SRT Number
-            Visibility(
-              visible: isConsultant ? true : false,
-              child: TextField(
-                decoration: const InputDecoration(
-                  filled: true,
-                  fillColor: foregroundColor,
-                  hintText: 'No. SRT',
-                  hintStyle: TextStyle(
-                    fontSize: 16,
-                    color: secondForegroundColor,
-                  ),
-                ),
-                controller: _controllerSRT,
-              ),
-            ),
+            // // Consultant SRT Number
+            // Visibility(
+            //   visible: isConsultant ? true : false,
+            //   child: TextField(
+            //     decoration: const InputDecoration(
+            //       filled: true,
+            //       fillColor: defaultBackgroundColor,
+            //       hintText: 'No. SRT',
+            //       hintStyle: TextStyle(
+            //         fontSize: 16,
+            //         color: blackColor,
+            //       ),
+            //     ),
+            //     controller: _controllerSRT,
+            //   ),
+            // ),
 
-            // Spacing
-            Visibility(
-              visible: isConsultant ? true : false,
-              child: const SizedBox(
-                height: 12,
-              ),
-            ),
+            // // Spacing
+            // Visibility(
+            //   visible: isConsultant ? true : false,
+            //   child: const SizedBox(
+            //     height: 12,
+            //   ),
+            // ),
             // Email
             TextField(
               decoration: const InputDecoration(
                 filled: true,
-                fillColor: foregroundColor,
+                fillColor: defaultBackgroundColor,
                 hintText: 'Email',
                 hintStyle: TextStyle(
                   fontSize: 16,
-                  color: secondForegroundColor,
+                  color: blackColor,
                 ),
               ),
               controller: _controllerEmail,
@@ -140,11 +145,11 @@ class _RegisterState extends State<Register> {
             TextField(
               decoration: const InputDecoration(
                 filled: true,
-                fillColor: foregroundColor,
+                fillColor: defaultBackgroundColor,
                 hintText: 'Kata Sandi',
                 hintStyle: TextStyle(
                   fontSize: 16,
-                  color: secondForegroundColor,
+                  color: blackColor,
                 ),
               ),
               controller: _controllerPassword,
@@ -164,9 +169,9 @@ class _RegisterState extends State<Register> {
                 padding: const EdgeInsets.symmetric(vertical: 12),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(3),
-                  color: defaultBackgroundColor,
+                  color: firstColor,
                   boxShadow: const [
-                    BoxShadow(color: foregroundColor, spreadRadius: 2),
+                    BoxShadow(color: firstColor, spreadRadius: 2),
                   ],
                 ),
                 child: const Text(
@@ -174,7 +179,7 @@ class _RegisterState extends State<Register> {
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
-                    color: foregroundColor,
+                    color: defaultBackgroundColor,
                   ),
                 ),
               ),
@@ -182,7 +187,7 @@ class _RegisterState extends State<Register> {
 
             //Spacing
             const SizedBox(
-              height: 8,
+              height: 0,
             ),
 
             // Checkbox to register as Consultant
@@ -194,12 +199,12 @@ class _RegisterState extends State<Register> {
                   "Konsultan",
                   style: TextStyle(
                       fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                      color: foregroundColor),
+                      fontWeight: FontWeight.w500,
+                      color: firstColor),
                 ),
                 Checkbox(
                   checkColor: defaultBackgroundColor,
-                  activeColor: foregroundColor,
+                  activeColor: firstColor,
                   value: isConsultant,
                   onChanged: (bool? value) {
                     setState(() {
@@ -209,10 +214,8 @@ class _RegisterState extends State<Register> {
                 ),
               ],
             ),
-            //Spacing
-            const SizedBox(
-              height: 8,
-            ),
+           
+            const Spacer(),
 
             // To Register
             Row(
@@ -225,7 +228,7 @@ class _RegisterState extends State<Register> {
                   child: const Text(
                     "Sudah ada akun? ",
                     style: TextStyle(
-                      color: secondForegroundColor,
+                      color: blackColor,
                     ),
                   ),
                 ),
@@ -242,7 +245,7 @@ class _RegisterState extends State<Register> {
                       "Masuk Akun",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        color: foregroundColor,
+                        color: firstColor,
                       ),
                     ),
                   ),

@@ -19,7 +19,7 @@ class _HomeState extends State<Home> {
     await Auth().logOut();
     if (!context.mounted) return;
     Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => MainApp()));
+        MaterialPageRoute(builder: (context) => const MainApp()));
   }
 
   Future<void> _chatRoom() async {
@@ -57,9 +57,9 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('App Name'),
-        foregroundColor: foregroundColor,
-        backgroundColor: defaultBackgroundColor,
+        title: const Text('ConsuLawtion'),
+        foregroundColor: defaultBackgroundColor,
+        backgroundColor: firstColor,
         elevation: 0,
       ),
       backgroundColor: defaultBackgroundColor,

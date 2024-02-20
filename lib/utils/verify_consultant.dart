@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:project_gsc/screens/consultant_home.dart';
 import 'package:project_gsc/screens/home.dart';
+import 'package:project_gsc/utils/colors.dart';
 
 class VerifyConsultant extends StatefulWidget {
   const VerifyConsultant({super.key});
@@ -24,9 +25,12 @@ class _VeriftConsultantState extends State<VerifyConsultant> {
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           // While waiting for the future to complete, return a loading indicator or widget
-          return const Center(
-            child: CircularProgressIndicator(
-              color: Colors.white,
+          return const Scaffold(
+            backgroundColor: defaultBackgroundColor,
+            body: Center(
+              child: CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(firstColor),
+              ),
             ),
           );
         } else if (snapshot.hasError) {
