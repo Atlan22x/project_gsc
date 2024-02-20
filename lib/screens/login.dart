@@ -15,6 +15,7 @@ class LogIn extends StatefulWidget {
 }
 
 class _LogInState extends State<LogIn> {
+  bool _isObscure = true;
   bool isConsultant = false;
 
   final TextEditingController _controllerEmail = TextEditingController();
@@ -124,7 +125,19 @@ class _LogInState extends State<LogIn> {
 
             // Password
             TextField(
-              decoration: const InputDecoration(
+              obscureText: _isObscure,
+              decoration: InputDecoration(
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    _isObscure ? Icons.visibility : Icons.visibility_off,
+                    color: Colors.grey,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      _isObscure = !_isObscure;
+                    });
+                  },
+                ),
                 filled: true,
                 fillColor: defaultBackgroundColor,
                 hintText: 'Kata Sandi',
