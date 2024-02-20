@@ -17,7 +17,7 @@ class _RegisterState extends State<Register> {
   final TextEditingController _controllerPassword = TextEditingController();
   final TextEditingController _controllerUsername = TextEditingController();
    final TextEditingController _controllerSRT = TextEditingController();
-
+  bool _isObscure = true;
   bool isConsultant = false;
 
   // User create account function
@@ -138,7 +138,19 @@ class _RegisterState extends State<Register> {
 
             // Password
             TextField(
-              decoration: const InputDecoration(
+              obscureText: _isObscure,
+              decoration: InputDecoration(
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    _isObscure ? Icons.visibility : Icons.visibility_off,
+                    color: Colors.grey,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      _isObscure = !_isObscure;
+                    });
+                  },
+                ),
                 filled: true,
                 fillColor: foregroundColor,
                 hintText: 'Kata Sandi',
