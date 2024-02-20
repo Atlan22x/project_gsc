@@ -25,4 +25,15 @@ dev_dependencies:
   flutter_lints: ^3.0.1
 
 flutter:
+  assets:
+    - assets/bisnis.png
+    - assets/internasional.png
+    - assets/kebijakan_publik.png
+    - assets/ketenagakerjaan.png
+    - assets/keuangan_perbankan.png
+    - assets/lingkungan.png
+    - assets/perdata.png
+    - assets/pidana.png
+    - assets/properti.png
+    - assets/teknologi_media.png
   uses-material-design: true
