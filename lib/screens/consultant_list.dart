@@ -14,7 +14,7 @@ class ConsultantList extends StatelessWidget {
           .push(MaterialPageRoute(builder: (context) => const ChatRoom()));
     }
 
-    Widget consultantCard() {
+    Widget consultantCard(String photoPath, String consultantName) {
       return InkWell(
         onTap: () {
           Navigator.of(context).push(MaterialPageRoute(
@@ -38,7 +38,7 @@ class ConsultantList extends StatelessWidget {
                   SizedBox(
                     width: 100,
                     height: double.infinity,
-                    child: Image.asset("assets/logo_consulawtion.png"),
+                    child: Image.asset(photoPath),
                   ),
                   const SizedBox(
                     width: 8,
@@ -49,9 +49,9 @@ class ConsultantList extends StatelessWidget {
                       const SizedBox(
                         height: 6,
                       ),
-                      const Text(
-                        "Hartaka Saputra S.H.",
-                        style: TextStyle(
+                      Text(
+                        consultantName,
+                        style: const TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w500,
                             color: blackColor),
@@ -154,10 +154,14 @@ class ConsultantList extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: ListView(
           children: [
-            consultantCard(),
-            consultantCard(),
-            consultantCard(),
-            consultantCard(),
+            consultantCard("assets/konsultan1.png", "Hartaka Saputra S.H."),
+            consultantCard("assets/konsultan2.png", "Cahyanto Kuswoyo S.H. "),
+            consultantCard("assets/konsultan3.png", "Mulyanto Pranowo S.H."),
+            consultantCard("assets/konsultan4.png", "Tasdik Mustofa S.H."),
+            consultantCard("assets/konsultan1.png", "Hartaka Saputra S.H."),
+            consultantCard("assets/konsultan2.png", "Cahyanto Kuswoyo S.H. "),
+            consultantCard("assets/konsultan3.png", "Mulyanto Pranowo S.H."),
+            consultantCard("assets/konsultan4.png", "Tasdik Mustofa S.H."),
           ],
         ),
       ),

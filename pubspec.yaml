@@ -31,18 +31,8 @@ dev_dependencies:
 
 flutter:
   assets:
-    - assets/bisnis.png
-    - assets/internasional.png
-    - assets/kebijakan_publik.png
-    - assets/ketenagakerjaan.png
-    - assets/keuangan_perbankan.png
-    - assets/lingkungan.png
-    - assets/perdata.png
-    - assets/pidana.png
-    - assets/properti.png
-    - assets/teknologi_media.png
-    - assets/logo_consulawtion.svg
-    - assets/logo_consulawtion.png
+    - assets/
+
   uses-material-design: true
 
 flutter_launcher_icons:
