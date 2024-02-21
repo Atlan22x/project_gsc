@@ -57,10 +57,7 @@ class _HomeState extends State<Home> {
       onPressed: logOut,
       child: const Text(
         'Logout',
-        style: TextStyle(
-          fontSize: 18,
-          fontWeight: FontWeight.w500
-        ),
+        style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
       ),
     );
   }
@@ -204,7 +201,41 @@ class _HomeState extends State<Home> {
             padding: const EdgeInsets.all(12.0),
             child: ListView(
               children: [
-                const Padding(padding: EdgeInsets.symmetric(horizontal: 8.0)),
+                const SizedBox(
+                  height: 12,
+                ),
+                Container(
+                  padding: const EdgeInsets.all(4),
+                  decoration: BoxDecoration(
+                    border: Border.all(width: 1, color: firstColor),
+                    borderRadius: const BorderRadius.all(Radius.circular(6))
+                  ),
+                  margin: const EdgeInsets.symmetric(horizontal: 8),
+                  height: 54,
+                  width: double.infinity,
+                  child: TextField(
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      suffixIcon: IconButton(
+                        icon: const Icon(
+                          Icons.search,
+                          size: 28,
+                        ),
+                        onPressed: () {},
+                      ),
+                      filled: true,
+                      fillColor: defaultBackgroundColor,
+                      hintText: 'Telusuri Konsultan',
+                      hintStyle: const TextStyle(
+                        fontSize: 16,
+                        color: blackColor,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 8.0),
                   child: Text(

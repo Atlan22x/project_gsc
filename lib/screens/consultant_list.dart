@@ -17,14 +17,13 @@ class ConsultantList extends StatelessWidget {
     Widget consultantCard(String photoPath, String consultantName) {
       return InkWell(
         onTap: () {
-          Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => const ConsultantInfo()));
+          // Navigator.of(context).push(
+          //     MaterialPageRoute(builder: (context) => const ConsultantInfo()));
         },
         child: Card(
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(12)),
             side: BorderSide(color: firstColor, width: 1),
-            
           ),
           margin: const EdgeInsets.symmetric(vertical: 6, horizontal: 4),
           elevation: 0,
@@ -83,7 +82,8 @@ class ConsultantList extends StatelessWidget {
                                   const RoundedRectangleBorder(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(12)),
-                                    side: BorderSide(color: firstColor, width: 2),
+                                    side:
+                                        BorderSide(color: firstColor, width: 2),
                                   ),
                                 ),
                               ),
@@ -105,7 +105,8 @@ class ConsultantList extends StatelessWidget {
                                   const RoundedRectangleBorder(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(12)),
-                                    side: BorderSide(color: firstColor, width: 2),
+                                    side:
+                                        BorderSide(color: firstColor, width: 2),
                                   ),
                                 ),
                               ),
@@ -154,6 +155,40 @@ class ConsultantList extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: ListView(
           children: [
+            const SizedBox(
+              height: 12,
+            ),
+            Container(
+              padding: const EdgeInsets.all(4),
+              decoration: BoxDecoration(
+                  border: Border.all(width: 1, color: firstColor),
+                  borderRadius: const BorderRadius.all(Radius.circular(6))),
+              margin: const EdgeInsets.symmetric(horizontal: 4),
+              height: 54,
+              width: double.infinity,
+              child: TextField(
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  suffixIcon: IconButton(
+                    icon: const Icon(
+                      Icons.search,
+                      size: 28,
+                    ),
+                    onPressed: () {},
+                  ),
+                  filled: true,
+                  fillColor: defaultBackgroundColor,
+                  hintText: 'Telusuri Konsultan',
+                  hintStyle: const TextStyle(
+                    fontSize: 16,
+                    color: blackColor,
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 12,
+            ),
             consultantCard("assets/konsultan1.png", "Hartaka Saputra S.H."),
             consultantCard("assets/konsultan2.png", "Cahyanto Kuswoyo S.H. "),
             consultantCard("assets/konsultan3.png", "Mulyanto Pranowo S.H."),

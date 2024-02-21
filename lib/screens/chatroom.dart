@@ -10,6 +10,7 @@ import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:open_filex/open_filex.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:project_gsc/utils/colors.dart';
 
 String randomString() {
   final random = Random.secure();
@@ -30,7 +31,7 @@ class _ChatRoomState extends State<ChatRoom> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(title: const Text("Chat Room")),
+    appBar: AppBar(title: const Text("Ruang Chat", style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500, color: blackColor),),),
     body: Chat(
       messages: _messages,
       onAttachmentPressed: _handleAttachmentPressed,
