@@ -1,7 +1,8 @@
 enum Category {
   all,
-  hukum,
-  home,
+  home, 
+  satu,
+  dua,
 }
 
 class Product {

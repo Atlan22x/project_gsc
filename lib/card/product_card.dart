@@ -5,9 +5,8 @@ import '../repository/product.dart';
 
 class ProductCard extends StatelessWidget {
   const ProductCard(
-      {this.imageAspectRatio = 33 / 49, required this.product, Key? key})
-      : assert(imageAspectRatio > 0),
-        super(key: key);
+      {this.imageAspectRatio = 33 / 49, required this.product, super.key})
+      : assert(imageAspectRatio > 0);
 
   final double imageAspectRatio;
   final Product product;

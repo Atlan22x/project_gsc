@@ -159,7 +159,7 @@ class _RegisterState extends State<Register> {
                 filled: true,
                 fillColor: defaultBackgroundColor,
                 hintText: 'Kata Sandi',
-                hintStyle: TextStyle(
+                hintStyle: const TextStyle(
                   fontSize: 16,
                   color: blackColor,
                 ),

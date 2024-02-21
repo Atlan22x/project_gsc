@@ -7,8 +7,8 @@ class TwoProductCardColumn extends StatelessWidget {
   const TwoProductCardColumn({
     required this.bottom,
     this.top,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final Product bottom;
   final Product? top;

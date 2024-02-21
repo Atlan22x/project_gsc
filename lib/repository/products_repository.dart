@@ -4,7 +4,7 @@ class ProductsRepository {
   static List<Product> loadProducts(Category category) {
     const allProducts = <Product>[
       Product(
-        category: Category.hukum,
+        category: Category.satu,
         id: 0,
         isFeatured: true,
         name: 'Perdata',
@@ -12,7 +12,7 @@ class ProductsRepository {
         imageName: 'perdata',
       ),
       Product(
-        category: Category.hukum,
+        category: Category.satu,
         id: 1,
         isFeatured: true,
         name: 'Pidana',
@@ -20,7 +20,7 @@ class ProductsRepository {
         imageName: 'pidana',
       ),
       Product(
-        category: Category.hukum,
+        category: Category.satu,
         id: 2,
         isFeatured: false,
         name: 'Bisnis',
@@ -28,7 +28,7 @@ class ProductsRepository {
         imageName: 'bisnis',
       ),
       Product(
-        category: Category.hukum,
+        category: Category.satu,
         id: 3,
         isFeatured: true,
         name: 'Ketenagakerjaan',
@@ -36,7 +36,7 @@ class ProductsRepository {
         imageName: 'ketenagakerjaan',
       ),
       Product(
-        category: Category.hukum,
+        category: Category.satu,
         id: 4,
         isFeatured: false,
         name: 'Lingkungan',
@@ -44,7 +44,7 @@ class ProductsRepository {
         imageName: 'lingkungan',
       ),
       Product(
-        category: Category.hukum,
+        category: Category.dua,
         id: 5,
         isFeatured: false,
         name: 'Kebijakan Publik',
@@ -52,7 +52,7 @@ class ProductsRepository {
         imageName: 'kebijakan_publik',
       ),
       Product(
-        category: Category.hukum,
+        category: Category.dua,
         id: 6,
         isFeatured: false,
         name: 'Teknologi dan Media',
@@ -60,7 +60,7 @@ class ProductsRepository {
         imageName: 'teknologi_media',
       ),
       Product(
-        category: Category.hukum,
+        category: Category.dua,
         id: 7,
         isFeatured: true,
         name: 'Keuangan dan Perbankan',
@@ -68,7 +68,7 @@ class ProductsRepository {
         imageName: 'keuangan_perbankan',
       ),
       Product(
-        category: Category.hukum,
+        category: Category.dua,
         id: 8,
         isFeatured: true,
         name: 'Properti',
@@ -76,7 +76,7 @@ class ProductsRepository {
         imageName: 'properti',
       ),
       Product(
-        category: Category.hukum,
+        category: Category.dua,
         id: 9,
         isFeatured: true,
         name: 'Internasional',

@@ -141,7 +141,7 @@ class _LogInState extends State<LogIn> {
                 filled: true,
                 fillColor: defaultBackgroundColor,
                 hintText: 'Kata Sandi',
-                hintStyle: TextStyle(
+                hintStyle: const TextStyle(
                   fontSize: 16,
                   color: blackColor,
                 ),
