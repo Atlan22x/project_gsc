@@ -20,46 +20,11 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  late PageController pageController;
-  int _page = 0;
-
-  @override
-  void initState() {
-    super.initState();
-    pageController = PageController();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    pageController.dispose();
-  }
-
-  void onPageChanged(int page) {
-    setState(() {
-      _page = page;
-    });
-  }
-
-  void navigationTapped(int page) {
-    pageController.jumpToPage(page);
-  }
-
   Future<void> logOut() async {
     await Auth().logOut();
     if (!context.mounted) return;
     Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (context) => const MainApp()));
-  }
-
-  Widget _logOutButton() {
-    return ElevatedButton(
-      onPressed: logOut,
-      child: const Text(
-        'Logout',
-        style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
-      ),
-    );
   }
 
   List<Widget> _buildGridCards(BuildContext context, Category category) {
@@ -93,11 +58,14 @@ class _HomeState extends State<Home> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                AspectRatio(
-                  aspectRatio: 7 / 4,
-                  child: Image.asset(
-                    product.assetName,
-                    fit: BoxFit.fitHeight,
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  child: AspectRatio(
+                    aspectRatio: 7 / 4,
+                    child: Image.asset(
+                      product.assetName,
+                      fit: BoxFit.fitHeight,
+                    ),
                   ),
                 ),
                 Padding(
@@ -109,7 +77,7 @@ class _HomeState extends State<Home> {
                         product.name,
                         style: const TextStyle(
                             fontSize: 16,
-                            color: firstColor,
+                            color: blackColor,
                             fontWeight: FontWeight.w600),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
@@ -123,7 +91,7 @@ class _HomeState extends State<Home> {
                             product.desc,
                             style: const TextStyle(
                                 fontSize: 12,
-                                color: firstColor,
+                                color: greyColor,
                                 fontWeight: FontWeight.w500),
                             maxLines: 20,
                             overflow: TextOverflow.ellipsis,
@@ -168,203 +136,270 @@ class _HomeState extends State<Home> {
 
   int _currentPage = 0;
 
+  void popupValueHandler(Menu menu) {
+    if (menu == Menu.profile) {
+    } else if (menu == Menu.privacy) {
+    } else if (menu == Menu.language) {
+    } else if (menu == Menu.theme) {
+    } else if (menu == Menu.logout) {
+      logOut();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: firstColor,
-        foregroundColor: defaultBackgroundColor,
-        toolbarHeight: 60,
-        title: const Text(
-          'ConsuLawtion',
-          style: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-        actions: <Widget>[
-          IconButton(
-            iconSize: 32,
-            icon: const Icon(
-              Icons.account_circle_outlined,
-              semanticLabel: 'account',
+          backgroundColor: firstColor,
+          foregroundColor: defaultBackgroundColor,
+          toolbarHeight: 60,
+          title: const Text(
+            'ConsuLawtion',
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.w500,
             ),
-            onPressed: () {},
           ),
-        ],
-      ),
-      body: PageView(
-        controller: pageController,
-        onPageChanged: onPageChanged,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: ListView(
-              children: [
-                const SizedBox(
-                  height: 12,
-                ),
-                Container(
-                  padding: const EdgeInsets.all(4),
-                  decoration: BoxDecoration(
-                    border: Border.all(width: 1, color: firstColor),
-                    borderRadius: const BorderRadius.all(Radius.circular(6))
-                  ),
-                  margin: const EdgeInsets.symmetric(horizontal: 8),
-                  height: 54,
-                  width: double.infinity,
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      suffixIcon: IconButton(
-                        icon: const Icon(
-                          Icons.search,
-                          size: 28,
-                        ),
-                        onPressed: () {},
-                      ),
-                      filled: true,
-                      fillColor: defaultBackgroundColor,
-                      hintText: 'Telusuri Konsultan',
-                      hintStyle: const TextStyle(
-                        fontSize: 16,
-                        color: blackColor,
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 12,
-                ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8.0),
-                  child: Text(
-                    "Kategori",
-                    style: TextStyle(
-                        color: blackColor,
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ),
-
-                SizedBox(
-                  height: 200,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: _buildGridCards(context, Category.satu),
-                  ),
-                ),
-
-                SizedBox(
-                  height: 200,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: _buildGridCards(context, Category.dua),
-                  ),
-                ),
-
-                SizedBox(
-                  width: double.infinity,
-                  height: 500,
+          actions: <Widget>[
+            PopupMenuButton(
+              elevation: 0,
+              padding: const EdgeInsets.all(4),
+              color: defaultBackgroundColor,
+              position: PopupMenuPosition.under,
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(8)),
+                side: BorderSide(color: firstColor, width: 1),
+              ),
+              itemBuilder: (context) => <PopupMenuEntry<Menu>>[
+                const PopupMenuItem<Menu>(
+                  value: Menu.profile,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 16.0, vertical: 8.0),
-                        child: Text(
-                          'Artikel',
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
-                        ),
+                      SizedBox(
+                        height: 4,
                       ),
-                      Expanded(
-                        child: Stack(
-                          children: [
-                            PageView.builder(
-                              itemCount: articles.length,
-                              onPageChanged: (index) {
-                                setState(() {
-                                  _currentPage = index;
-                                });
-                              },
-                              itemBuilder: (context, index) {
-                                return ArticleCard(
-                                  article: articles[index],
-                                );
-                              },
-                            ),
-                            Positioned(
-                              bottom: 16,
-                              left: 0,
-                              right: 0,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: List.generate(
-                                  articles.length,
-                                  (index) => AnimatedContainer(
-                                    duration: Duration(milliseconds: 300),
-                                    margin:
-                                        EdgeInsets.symmetric(horizontal: 4.0),
-                                    width: _currentPage == index ? 12.0 : 8.0,
-                                    height: 8.0,
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: _currentPage == index
-                                          ? Colors.blue
-                                          : Colors.grey,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
+                      Text(
+                        "Informasiku",
+                        style: TextStyle(fontSize: 18, color: blackColor),
+                      ),
+                      SizedBox(
+                        height: 2,
+                      ),
+                      ListTile(
+                        iconColor: greyColor,
+                        textColor: greyColor,
+                        dense: true,
+                        leading: Icon(Icons.person_outline),
+                        title: Text('Profilku'),
+                        trailing: Icon(Icons.keyboard_arrow_right),
                       ),
                     ],
                   ),
                 ),
-                // Logout button
-                _logOutButton()
+                const PopupMenuItem<Menu>(
+                  value: Menu.privacy,
+                  child: ListTile(
+                    iconColor: greyColor,
+                    textColor: greyColor,
+                    dense: true,
+                    leading: Icon(Icons.lock_outline),
+                    title: Text('Privasi'),
+                    trailing: Icon(Icons.keyboard_arrow_right),
+                  ),
+                ),
+                const PopupMenuDivider(height: 20),
+                const PopupMenuItem<Menu>(
+                  value: Menu.theme,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        height: 4,
+                      ),
+                      Text(
+                        "Pengaturan",
+                        style: TextStyle(fontSize: 18, color: blackColor),
+                      ),
+                      SizedBox(
+                        height: 2,
+                      ),
+                      ListTile(
+                        iconColor: greyColor,
+                        textColor: greyColor,
+                        dense: true,
+                        leading: Icon(Icons.language),
+                        title: Text('Bahasa'),
+                        trailing: Icon(Icons.keyboard_arrow_right),
+                      ),
+                    ],
+                  ),
+                ),
+                const PopupMenuItem<Menu>(
+                  value: Menu.language,
+                  child: ListTile(
+                    iconColor: greyColor,
+                    textColor: greyColor,
+                    dense: true,
+                    leading: Icon(Icons.dark_mode_outlined),
+                    title: Text('Tampilan'),
+                    trailing: Icon(Icons.keyboard_arrow_right),
+                  ),
+                ),
+                const PopupMenuDivider(height: 20),
+                const PopupMenuItem<Menu>(
+                  value: Menu.logout,
+                  child: ListTile(
+                    iconColor: greyColor,
+                    textColor: greyColor,
+                    dense: true,
+                    leading: Icon(Icons.logout),
+                    title: Text('Keluar'),
+                    trailing: Icon(Icons.keyboard_arrow_right),
+                  ),
+                ),
               ],
+              icon: const Icon(
+                Icons.account_circle_outlined,
+                size: 36,
+              ),
+              onSelected: (value) {
+                popupValueHandler(value);
+              },
+            )
+          ]),
+      body: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: ListView(
+          children: [
+            const SizedBox(
+              height: 12,
             ),
-          ),
-          const ChatRoom(),
-          const screens.Notification(),
-        ],
-      ),
-      resizeToAvoidBottomInset: false,
-      bottomNavigationBar: NavigationBar(
-        destinations: const [
-          NavigationDestination(
-              icon: Icon(
-                Icons.home,
-                color: defaultBackgroundColor,
+            Container(
+              padding: const EdgeInsets.all(4),
+              decoration: BoxDecoration(
+                  border: Border.all(width: 1, color: firstColor),
+                  borderRadius: const BorderRadius.all(Radius.circular(6))),
+              margin: const EdgeInsets.symmetric(horizontal: 8),
+              height: 54,
+              width: double.infinity,
+              child: TextField(
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  suffixIcon: IconButton(
+                    icon: const Icon(
+                      Icons.search,
+                      size: 28,
+                    ),
+                    onPressed: () {},
+                  ),
+                  filled: true,
+                  fillColor: defaultBackgroundColor,
+                  hintText: 'Telusuri Konsultan',
+                  hintStyle: const TextStyle(
+                    fontSize: 16,
+                    color: blackColor,
+                  ),
+                ),
               ),
-              label: 'Home'),
-          NavigationDestination(
-              icon: Icon(
-                Icons.chat,
-                color: defaultBackgroundColor,
+            ),
+            const SizedBox(
+              height: 18,
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8.0),
+              child: Text(
+                "Kategori",
+                style: TextStyle(
+                    color: blackColor,
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold),
               ),
-              label: 'Chat'),
-          NavigationDestination(
-              icon: Icon(
-                Icons.notifications,
-                color: defaultBackgroundColor,
+            ),
+            const SizedBox(height: 12,),
+            SizedBox(
+              height: 200,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: _buildGridCards(context, Category.satu),
               ),
-              label: 'Notifications')
-        ],
-        onDestinationSelected: navigationTapped,
-        backgroundColor: firstColor,
-        indicatorColor: Colors.grey,
-        labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
-        selectedIndex: _page,
-        height: 60,
+            ),
+            SizedBox(
+              height: 200,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: _buildGridCards(context, Category.dua),
+              ),
+            ),
+            const SizedBox(height: 12,),
+            SizedBox(
+              width: double.infinity,
+              height: 500,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Padding(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
+                    child: Text(
+                      'Artikel',
+                      style:
+                          TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  Expanded(
+                    child: Stack(
+                      children: [
+                        PageView.builder(
+                          itemCount: articles.length,
+                          onPageChanged: (index) {
+                            setState(() {
+                              _currentPage = index;
+                            });
+                          },
+                          itemBuilder: (context, index) {
+                            return ArticleCard(
+                              article: articles[index],
+                            );
+                          },
+                        ),
+                        Positioned(
+                          bottom: 16,
+                          left: 0,
+                          right: 0,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: List.generate(
+                              articles.length,
+                              (index) => AnimatedContainer(
+                                duration: Duration(milliseconds: 300),
+                                margin: EdgeInsets.symmetric(horizontal: 4.0),
+                                width: _currentPage == index ? 12.0 : 8.0,
+                                height: 8.0,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: _currentPage == index
+                                      ? Colors.blue
+                                      : Colors.grey,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
 }
+
+enum Menu { profile, privacy, language, theme, logout }
 
 class ArticleCard extends StatelessWidget {
   final Article article;

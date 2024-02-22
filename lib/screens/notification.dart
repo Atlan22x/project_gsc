@@ -44,26 +44,32 @@ class Notification extends StatelessWidget {
       );
     }
 
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 8),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8.0),
-            child: Text(
-              "Notifikasi",
-              style: TextStyle(
-                  color: blackColor, fontSize: 24, fontWeight: FontWeight.bold),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          "Notifikasi",
+          style: TextStyle(
+              color: defaultBackgroundColor,
+              fontSize: 24,
+              fontWeight: FontWeight.w500),
+        ),
+        backgroundColor: firstColor,
+        foregroundColor: defaultBackgroundColor,
+        toolbarHeight: 60,
+      ),
+      body: Container(
+        margin: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 8),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(
+              height: 10,
             ),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          notificationCard(),
-          notificationCard(),
-          notificationCard(),
-        ],
+            notificationCard(),
+            notificationCard(),
+            notificationCard(),
+          ],
+        ),
       ),
     );
   }

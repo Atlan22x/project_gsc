@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:project_gsc/screens/consultant_home.dart';
-import 'package:project_gsc/screens/home.dart';
+import 'package:project_gsc/screens/user_screen.dart';
 import 'package:project_gsc/utils/colors.dart';
 
 class VerifyConsultant extends StatefulWidget {
@@ -44,7 +44,7 @@ class _VeriftConsultantState extends State<VerifyConsultant> {
           if (isConsultant) {
             return const ConsultantHome();
           } else {
-            return Home();
+            return const UserScreen();
           }
         }
       },

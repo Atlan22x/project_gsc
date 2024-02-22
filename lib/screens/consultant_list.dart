@@ -1,24 +1,80 @@
 import 'package:flutter/material.dart';
+import 'package:project_gsc/main.dart';
 import 'package:project_gsc/screens/chatroom.dart';
-import 'package:project_gsc/screens/consultant_info.dart';
+import 'package:project_gsc/utils/auth.dart';
 import 'package:project_gsc/utils/colors.dart';
+
+enum Menu { profile, privacy, language, theme, logout }
 
 class ConsultantList extends StatelessWidget {
   const ConsultantList({super.key});
 
   @override
   Widget build(BuildContext context) {
+    Future<void> logOut() async {
+      await Auth().logOut();
+      if (!context.mounted) return;
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => const MainApp()));
+    }
+
     Future<void> toChatRoom() async {
       if (!context.mounted) return;
       Navigator.of(context)
           .push(MaterialPageRoute(builder: (context) => const ChatRoom()));
     }
 
+    void popupValueHandler(Menu menu) {
+      if (menu == Menu.profile) {
+      } else if (menu == Menu.privacy) {
+      } else if (menu == Menu.language) {
+      } else if (menu == Menu.theme) {
+      } else if (menu == Menu.logout) {
+        logOut();
+      }
+    }
+
+    Future<void> _dialogBuilder(BuildContext context) {
+      return showDialog<void>(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Basic dialog title'),
+            content: const Text(
+              'A dialog is a type of modal window that\n'
+              'appears in front of app content to\n'
+              'provide critical information, or prompt\n'
+              'for a decision to be made.',
+            ),
+            actions: <Widget>[
+              TextButton(
+                style: TextButton.styleFrom(
+                  textStyle: Theme.of(context).textTheme.labelLarge,
+                ),
+                child: const Text('Disable'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+              TextButton(
+                style: TextButton.styleFrom(
+                  textStyle: Theme.of(context).textTheme.labelLarge,
+                ),
+                child: const Text('Enable'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
+
     Widget consultantCard(String photoPath, String consultantName) {
       return InkWell(
         onTap: () {
-          // Navigator.of(context).push(
-          //     MaterialPageRoute(builder: (context) => const ConsultantInfo()));
+          _dialogBuilder(context);
         },
         child: Card(
           shape: const RoundedRectangleBorder(
@@ -140,15 +196,113 @@ class ConsultantList extends StatelessWidget {
             fontWeight: FontWeight.w500,
           ),
         ),
-        actions: [
-          IconButton(
-            iconSize: 32,
+        actions: <Widget>[
+          PopupMenuButton(
+            elevation: 0,
+            padding: const EdgeInsets.all(4),
+            color: defaultBackgroundColor,
+            position: PopupMenuPosition.under,
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(8)),
+              side: BorderSide(color: firstColor, width: 1),
+            ),
+            itemBuilder: (context) => <PopupMenuEntry<Menu>>[
+              const PopupMenuItem<Menu>(
+                value: Menu.profile,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: 4,
+                    ),
+                    Text(
+                      "Informasiku",
+                      style: TextStyle(fontSize: 18, color: blackColor),
+                    ),
+                    SizedBox(
+                      height: 2,
+                    ),
+                    ListTile(
+                      iconColor: greyColor,
+                      textColor: greyColor,
+                      dense: true,
+                      leading: Icon(Icons.person_outline),
+                      title: Text('Profilku'),
+                      trailing: Icon(Icons.keyboard_arrow_right),
+                    ),
+                  ],
+                ),
+              ),
+              const PopupMenuItem<Menu>(
+                value: Menu.privacy,
+                child: ListTile(
+                  iconColor: greyColor,
+                  textColor: greyColor,
+                  dense: true,
+                  leading: Icon(Icons.lock_outline),
+                  title: Text('Privasi'),
+                  trailing: Icon(Icons.keyboard_arrow_right),
+                ),
+              ),
+              const PopupMenuDivider(height: 20),
+              const PopupMenuItem<Menu>(
+                value: Menu.theme,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: 4,
+                    ),
+                    Text(
+                      "Pengaturan",
+                      style: TextStyle(fontSize: 18, color: blackColor),
+                    ),
+                    SizedBox(
+                      height: 2,
+                    ),
+                    ListTile(
+                      iconColor: greyColor,
+                      textColor: greyColor,
+                      dense: true,
+                      leading: Icon(Icons.language),
+                      title: Text('Bahasa'),
+                      trailing: Icon(Icons.keyboard_arrow_right),
+                    ),
+                  ],
+                ),
+              ),
+              const PopupMenuItem<Menu>(
+                value: Menu.language,
+                child: ListTile(
+                  iconColor: greyColor,
+                  textColor: greyColor,
+                  dense: true,
+                  leading: Icon(Icons.dark_mode_outlined),
+                  title: Text('Tampilan'),
+                  trailing: Icon(Icons.keyboard_arrow_right),
+                ),
+              ),
+              const PopupMenuDivider(height: 20),
+              const PopupMenuItem<Menu>(
+                value: Menu.logout,
+                child: ListTile(
+                  iconColor: greyColor,
+                  textColor: greyColor,
+                  dense: true,
+                  leading: Icon(Icons.logout),
+                  title: Text('Keluar'),
+                  trailing: Icon(Icons.keyboard_arrow_right),
+                ),
+              ),
+            ],
             icon: const Icon(
               Icons.account_circle_outlined,
-              semanticLabel: 'account',
+              size: 36,
             ),
-            onPressed: () {},
-          ),
+            onSelected: (value) {
+              popupValueHandler(value);
+            },
+          )
         ],
       ),
       body: Padding(

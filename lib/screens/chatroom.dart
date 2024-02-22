@@ -31,18 +31,29 @@ class _ChatRoomState extends State<ChatRoom> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(title: const Text("Ruang Chat", style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500, color: blackColor),),),
-    body: Chat(
-      messages: _messages,
-      onAttachmentPressed: _handleAttachmentPressed,
-      onMessageTap: _handleMessageTap,
-      onPreviewDataFetched: _handlePreviewDataFetched,
-      onSendPressed: _handleSendPressed,
-      user: _user,
-    ),
-  );
+        appBar: AppBar(
+          title: const Text(
+            "Ruang Chat",
+            style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.w500,
+                color: defaultBackgroundColor),
+          ),
+          backgroundColor: firstColor,
+          foregroundColor: defaultBackgroundColor,
+          toolbarHeight: 60,
+        ),
+        body: Chat(
+          messages: _messages,
+          onAttachmentPressed: _handleAttachmentPressed,
+          onMessageTap: _handleMessageTap,
+          onPreviewDataFetched: _handlePreviewDataFetched,
+          onSendPressed: _handleSendPressed,
+          user: _user,
+        ),
+      );
 
-   void _addMessage(types.Message message) {
+  void _addMessage(types.Message message) {
     setState(() {
       _messages.insert(0, message);
     });
@@ -143,9 +154,9 @@ class _ChatRoomState extends State<ChatRoom> {
       if (message.uri.startsWith('http')) {
         try {
           final index =
-          _messages.indexWhere((element) => element.id == message.id);
+              _messages.indexWhere((element) => element.id == message.id);
           final updatedMessage =
-          (_messages[index] as types.FileMessage).copyWith(
+              (_messages[index] as types.FileMessage).copyWith(
             isLoading: true,
           );
 
@@ -165,9 +176,9 @@ class _ChatRoomState extends State<ChatRoom> {
           }
         } finally {
           final index =
-          _messages.indexWhere((element) => element.id == message.id);
+              _messages.indexWhere((element) => element.id == message.id);
           final updatedMessage =
-          (_messages[index] as types.FileMessage).copyWith(
+              (_messages[index] as types.FileMessage).copyWith(
             isLoading: null,
           );
 
@@ -182,9 +193,9 @@ class _ChatRoomState extends State<ChatRoom> {
   }
 
   void _handlePreviewDataFetched(
-      types.TextMessage message,
-      types.PreviewData previewData,
-      ) {
+    types.TextMessage message,
+    types.PreviewData previewData,
+  ) {
     final index = _messages.indexWhere((element) => element.id == message.id);
     final updatedMessage = (_messages[index] as types.TextMessage).copyWith(
       previewData: previewData,
