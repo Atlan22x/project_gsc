@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:project_gsc/screens/chatroom.dart';
 import 'package:project_gsc/screens/home.dart';
 import 'package:project_gsc/screens/notification.dart' as screens;
+import 'package:project_gsc/screens/template.dart';
 import 'package:project_gsc/utils/colors.dart';
 
 class UserScreen extends StatefulWidget {
@@ -46,43 +47,55 @@ class _UserScreenState extends State<UserScreen> {
         children: [
           Home(),
           const ChatRoom(),
+          const Template(),
           const screens.Notification(),
         ],
       ),
       resizeToAvoidBottomInset: false,
-      bottomNavigationBar: NavigationBar(
-        destinations: const [
-          NavigationDestination(
-              icon: Icon(
-                Icons.home,
-                color: defaultBackgroundColor,
-              ),
-              label: 'Home'),
-          NavigationDestination(
-              icon: Icon(
-                Icons.chat,
-                color: defaultBackgroundColor,
-              ),
-              label: 'Chat'),
-          NavigationDestination(
-              icon: Icon(
-                Icons.notifications,
-                color: defaultBackgroundColor,
-              ),
-              label: 'Notifications'),
-           NavigationDestination(
-              icon: Icon(
-                Icons.document_scanner_outlined,
-                color: defaultBackgroundColor,
-              ),
-              label: 'Template')
-        ],
-        onDestinationSelected: navigationTapped,
-        backgroundColor: firstColor,
-        indicatorColor: Colors.grey,
-        labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
-        selectedIndex: _page,
-        height: 60,
+      bottomNavigationBar: NavigationBarTheme(
+        data: const NavigationBarThemeData(
+          backgroundColor: firstColor,
+          labelTextStyle: MaterialStatePropertyAll(
+            TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w500,
+              color: defaultBackgroundColor,
+            ),
+          ),
+        ),
+        child: NavigationBar(
+          destinations: const [
+            NavigationDestination(
+                icon: Icon(
+                  Icons.home,
+                  color: defaultBackgroundColor,
+                ),
+                label: 'Home'),
+            NavigationDestination(
+                icon: Icon(
+                  Icons.chat,
+                  color: defaultBackgroundColor,
+                ),
+                label: 'Chat'),
+            NavigationDestination(
+                icon: Icon(
+                  Icons.document_scanner_outlined,
+                  color: defaultBackgroundColor,
+                ),
+                label: 'Template'),
+            NavigationDestination(
+                icon: Icon(
+                  Icons.notifications,
+                  color: defaultBackgroundColor,
+                ),
+                label: 'Notifications'),
+          ],
+          onDestinationSelected: navigationTapped,
+          backgroundColor: firstColor,
+          indicatorColor: greyColor,
+          selectedIndex: _page,
+          height: 70,
+        ),
       ),
     );
   }

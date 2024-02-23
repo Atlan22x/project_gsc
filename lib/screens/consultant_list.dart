@@ -39,28 +39,176 @@ class ConsultantList extends StatelessWidget {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: const Text('Basic dialog title'),
-            content: const Text(
-              'A dialog is a type of modal window that\n'
-              'appears in front of app content to\n'
-              'provide critical information, or prompt\n'
-              'for a decision to be made.',
+            elevation: 0,
+            title: const Text(
+              'Detail Konsultant',
+              style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
+            ),
+            content: SizedBox(
+              height: 360,
+              width: 300,
+              child: ListView(
+                children: [
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.all(2),
+                        decoration: BoxDecoration(
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(8)),
+                          border: Border.all(color: thirdColor, width: 2),
+                          color: defaultBackgroundColor,
+                        ),
+                        child: Image.asset(
+                          'assets/konsultan1.png',
+                          width: 80,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      const Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Hartaka Saputra S.H.',
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.w600),
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Row(children: [
+                            Icon(
+                              Icons.location_on,
+                              size: 20,
+                              color: greyColor,
+                            ),
+                            Text(
+                              'Jakarta',
+                              style: TextStyle(fontSize: 14, color: greyColor),
+                            ),
+                          ]),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Text(
+                            'Pengalaman 3 tahun',
+                            style: TextStyle(
+                                fontSize: 12,
+                                color: blackColor,
+                                fontWeight: FontWeight.w200),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  const Text(
+                    'Ulasan',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                  ),
+                  Card(
+                    elevation: 0,
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(6)),
+                      side: BorderSide(color: greyColor, width: 1),
+                    ),
+                    child: Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.all(4),
+                      child: const Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "⭐ 4.8/5.0 | 201 Konsultasi",
+                            style: TextStyle(fontSize: 12),
+                          ),
+                          Icon(Icons.keyboard_arrow_right)
+                        ],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  const Text(
+                    'Keahlihan',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 6),
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(8)),
+                          color: secondColor,
+                        ),
+                        child: const Text(
+                          'Perdata',
+                          style: TextStyle(color: firstColor, fontSize: 12),
+                        ),
+                      ),
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 6),
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(8)),
+                          color: secondColor,
+                        ),
+                        child: const Text(
+                          'Pidana',
+                          style: TextStyle(color: firstColor, fontSize: 12),
+                        ),
+                      ),
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 6),
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(8)),
+                          color: secondColor,
+                        ),
+                        child: const Text(
+                          'Internasional',
+                          style: TextStyle(color: firstColor, fontSize: 12),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  const Text(
+                    'Tentang Konsultan',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  const Text(
+                    'Hartaka Saputra, S.H. adalah seorang Advokat di PERADI Jakarta, yang berkantor di Natha Law, Jakarta. Dengan keanggotaannya di Pusat Bantuan Hukum PERADI, ia menyediakan layanan hukum berkualitas tinggi untuk membantu klien mengatasi berbagai masalah hukum di Jakarta dan sekitarnya.',
+                    style: TextStyle(fontSize: 12),
+                  ),
+                ],
+              ),
             ),
             actions: <Widget>[
               TextButton(
-                style: TextButton.styleFrom(
-                  textStyle: Theme.of(context).textTheme.labelLarge,
+                child: const Text(
+                  'Tutup',
+                  style: TextStyle(fontSize: 14, color: firstColor),
                 ),
-                child: const Text('Disable'),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-              TextButton(
-                style: TextButton.styleFrom(
-                  textStyle: Theme.of(context).textTheme.labelLarge,
-                ),
-                child: const Text('Enable'),
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
@@ -90,7 +238,12 @@ class ConsultantList extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Row(
                 children: [
-                  SizedBox(
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.all(Radius.circular(12)),
+                      border: Border.all(color: defaultBackgroundColor, width: 0),
+                      color: defaultBackgroundColor,
+                    ),
                     width: 100,
                     height: double.infinity,
                     child: Image.asset(photoPath),
@@ -214,6 +367,7 @@ class ConsultantList extends StatelessWidget {
                   children: [
                     SizedBox(
                       height: 4,
+                      width: 180,
                     ),
                     Text(
                       "Informasiku",
@@ -226,8 +380,14 @@ class ConsultantList extends StatelessWidget {
                       iconColor: greyColor,
                       textColor: greyColor,
                       dense: true,
-                      leading: Icon(Icons.person_outline),
-                      title: Text('Profilku'),
+                      leading: Icon(
+                        Icons.person_outline,
+                        size: 28,
+                      ),
+                      title: Text(
+                        'Profilku',
+                        style: TextStyle(fontSize: 16),
+                      ),
                       trailing: Icon(Icons.keyboard_arrow_right),
                     ),
                   ],
@@ -239,8 +399,14 @@ class ConsultantList extends StatelessWidget {
                   iconColor: greyColor,
                   textColor: greyColor,
                   dense: true,
-                  leading: Icon(Icons.lock_outline),
-                  title: Text('Privasi'),
+                  leading: Icon(
+                    Icons.lock_outline,
+                    size: 28,
+                  ),
+                  title: Text(
+                    'Privasi',
+                    style: TextStyle(fontSize: 16),
+                  ),
                   trailing: Icon(Icons.keyboard_arrow_right),
                 ),
               ),
@@ -264,8 +430,14 @@ class ConsultantList extends StatelessWidget {
                       iconColor: greyColor,
                       textColor: greyColor,
                       dense: true,
-                      leading: Icon(Icons.language),
-                      title: Text('Bahasa'),
+                      leading: Icon(
+                        Icons.language,
+                        size: 28,
+                      ),
+                      title: Text(
+                        'Bahasa',
+                        style: TextStyle(fontSize: 16),
+                      ),
                       trailing: Icon(Icons.keyboard_arrow_right),
                     ),
                   ],
@@ -277,8 +449,14 @@ class ConsultantList extends StatelessWidget {
                   iconColor: greyColor,
                   textColor: greyColor,
                   dense: true,
-                  leading: Icon(Icons.dark_mode_outlined),
-                  title: Text('Tampilan'),
+                  leading: Icon(
+                    Icons.dark_mode_outlined,
+                    size: 28,
+                  ),
+                  title: Text(
+                    'Tampilan',
+                    style: TextStyle(fontSize: 16),
+                  ),
                   trailing: Icon(Icons.keyboard_arrow_right),
                 ),
               ),
@@ -289,8 +467,14 @@ class ConsultantList extends StatelessWidget {
                   iconColor: greyColor,
                   textColor: greyColor,
                   dense: true,
-                  leading: Icon(Icons.logout),
-                  title: Text('Keluar'),
+                  leading: Icon(
+                    Icons.logout,
+                    size: 28,
+                  ),
+                  title: Text(
+                    'Keluar',
+                    style: TextStyle(fontSize: 16),
+                  ),
                   trailing: Icon(Icons.keyboard_arrow_right),
                 ),
               ),

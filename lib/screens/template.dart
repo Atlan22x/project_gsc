@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:project_gsc/utils/colors.dart';
 
 class Template extends StatelessWidget {
-  const Template({Key? key}) : super(key: key);
+  const Template({super.key});
 
   @override
   Widget build(BuildContext context) {
