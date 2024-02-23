@@ -66,16 +66,16 @@ class _UserScreenState extends State<UserScreen> {
               label: 'Chat'),
           NavigationDestination(
               icon: Icon(
-                Icons.document_scanner_outlined,
-                color: defaultBackgroundColor,
-              ),
-              label: 'Template'),
-          NavigationDestination(
-              icon: Icon(
                 Icons.notifications,
                 color: defaultBackgroundColor,
               ),
-              label: 'Notifications')
+              label: 'Notifications'),
+           NavigationDestination(
+              icon: Icon(
+                Icons.document_scanner_outlined,
+                color: defaultBackgroundColor,
+              ),
+              label: 'Template')
         ],
         onDestinationSelected: navigationTapped,
         backgroundColor: firstColor,
