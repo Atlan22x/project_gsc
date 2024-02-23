@@ -13,7 +13,7 @@ class Notification extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(12)),
           side: BorderSide(color: firstColor, width: 1),
         ),
-        margin: const EdgeInsets.symmetric(vertical: 6, horizontal: 4),
+        margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
         child: SizedBox(
           height: 60,
           width: double.infinity,
@@ -62,9 +62,6 @@ class Notification extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(
-              height: 10,
-            ),
             notificationCard(),
             notificationCard(),
             notificationCard(),

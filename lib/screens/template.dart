@@ -21,7 +21,7 @@ class Template extends StatelessWidget {
         toolbarHeight: 60,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(12.0),
+        padding: const EdgeInsets.all(12),
         child: ListView(
           children: [
             const SizedBox(height: 12),
@@ -56,7 +56,7 @@ class Template extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             Container(
-              margin: const EdgeInsets.symmetric(vertical: 12),
+              margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 6),
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
                 border: Border.all(width: 1, color: firstColor),
@@ -100,7 +100,7 @@ class Template extends StatelessWidget {
               ),
             ),
             Container(
-              margin: const EdgeInsets.symmetric(vertical: 12),
+              margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 6),
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
                 border: Border.all(width: 1, color: firstColor),
@@ -144,7 +144,7 @@ class Template extends StatelessWidget {
               ),
             ),
             Container(
-              margin: const EdgeInsets.symmetric(vertical: 12),
+              margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 6),
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
                 border: Border.all(width: 1, color: firstColor),
@@ -188,7 +188,7 @@ class Template extends StatelessWidget {
               ),
             ),
             Container(
-              margin: const EdgeInsets.symmetric(vertical: 12),
+              margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 6),
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
                 border: Border.all(width: 1, color: firstColor),
@@ -232,7 +232,7 @@ class Template extends StatelessWidget {
               ),
             ),
             Container(
-              margin: const EdgeInsets.symmetric(vertical: 12),
+              margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 6),
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
                 border: Border.all(width: 1, color: firstColor),
@@ -276,7 +276,7 @@ class Template extends StatelessWidget {
               ),
             ),
             Container(
-              margin: const EdgeInsets.symmetric(vertical: 12),
+              margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 6),
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
                 border: Border.all(width: 1, color: firstColor),

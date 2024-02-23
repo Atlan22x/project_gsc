@@ -41,7 +41,7 @@ class ConsultantList extends StatelessWidget {
           return AlertDialog(
             elevation: 0,
             title: const Text(
-              'Detail Konsultant',
+              'Detail Konsultan',
               style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
             ),
             content: SizedBox(
