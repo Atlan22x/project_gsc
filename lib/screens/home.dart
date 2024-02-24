@@ -4,6 +4,8 @@ import 'package:project_gsc/main.dart';
 import 'package:project_gsc/screens/chatroom.dart';
 import 'package:project_gsc/screens/consultant_list.dart';
 import 'package:project_gsc/screens/notification.dart' as screens;
+import 'package:project_gsc/screens/user_privacy.dart';
+import 'package:project_gsc/screens/user_profile.dart';
 import 'package:project_gsc/utils/auth.dart';
 import 'package:project_gsc/utils/colors.dart';
 import 'package:intl/intl.dart';
@@ -138,7 +140,9 @@ class _HomeState extends State<Home> {
 
   void popupValueHandler(Menu menu) {
     if (menu == Menu.profile) {
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) => const UserProfile()));
     } else if (menu == Menu.privacy) {
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) => const UserPrivacy()));
     } else if (menu == Menu.language) {
     } else if (menu == Menu.theme) {
     } else if (menu == Menu.logout) {
